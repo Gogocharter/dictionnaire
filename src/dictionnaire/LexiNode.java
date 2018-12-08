@@ -6,11 +6,11 @@ public class LexiNode {
 
 	char letter;
 	Word word;
-	LinkedList<Node> children = new LinkedList<Node>();
+	LinkedList<LexiNode> children = new LinkedList<LexiNode>();
 
 	public LexiNode(char letter, Word word) {
 		this.letter = letter;
-		this.word = word;	
+		this.word = word;
 	}
 
 	public LexiNode(char letter) {
@@ -19,13 +19,14 @@ public class LexiNode {
 
 	public void exist(Word word, int position) {
 
-		for (Node child : children) {
-			if (child.letter == word.getWord().charAt(position)) {
-				child.addWord(word, position + 1);
-				break;
+		if (word.getWord().length() > position) {
+			for (LexiNode child : children) {
+				if (child.letter == word.getWord().charAt(position)) {
+					child.addWord(word, position + 1);
+					break;
+				}
 			}
 		}
-
 	}
 
 	public void findNewWordBranch(Word word, int position) {
@@ -33,14 +34,18 @@ public class LexiNode {
 		boolean exist = false;
 		if (children != null && !children.isEmpty()) {
 
-			for (Node child : children) {
-				if (child.letter == word.getWord().charAt(position)) {
-					child.findNewWordBranch(word, position + 1);
-					exist = true;
-					break;
-				}
-			}
+			if (word.getWord().length() > position) {
 
+				for (LexiNode child : children) {
+					if (child.letter == word.getWord().charAt(position)) {
+						child.findNewWordBranch(word, position + 1);
+						exist = true;
+						break;
+					}
+				}
+			}else {
+				exist = true;
+			}
 		}
 		if (!exist) {
 			addWord(word, position);
@@ -50,13 +55,14 @@ public class LexiNode {
 
 	public void addWord(Word word, int position) {
 
-		if (word.getWord().length() < position) {
-			children.add(new Node(word.getWord().charAt(position), word));
+		
+		if ((word.getWord().length() - 1) == position) {
+			children.add(new LexiNode(word.getWord().charAt(position), word));
 		} else {
-			Node newNode = new Node(word.getWord().charAt(position));
+			LexiNode newNode = new LexiNode(word.getWord().charAt(position));
 			children.add(newNode);
 
-			newNode.addWord(word, position + 1);
+			children.getLast().addWord(word, position + 1);
 		}
 
 	}
@@ -77,11 +83,11 @@ public class LexiNode {
 		this.word = word;
 	}
 
-	public LinkedList<Node> getChildren() {
+	public LinkedList<LexiNode> getChildren() {
 		return children;
 	}
 
-	public void setChildren(LinkedList<Node> children) {
+	public void setChildren(LinkedList<LexiNode> children) {
 		this.children = children;
 	}
 }

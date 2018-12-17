@@ -1,5 +1,7 @@
 package dictionnaire;
 
+import java.util.LinkedList;
+
 import graphics.MainWindow;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -25,7 +27,13 @@ public class TempMain extends Application {
 		
 		// Start graphical interface.
 		
+		LinkedList<Word> test  = dictionary.Search(word1);
+		for (Word word : test) {
+			System.out.println(word.getWord());
+		}
+		
 		launch(args);
+
 	}
 
 	@Override

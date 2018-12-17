@@ -5,8 +5,8 @@ import java.util.LinkedList;
 public class LexiNode {
 
 	char letter;
-	Word word;
-	LinkedList<LexiNode> children = new LinkedList<LexiNode>();
+	private Word word;
+	private LinkedList<LexiNode> children = new LinkedList<LexiNode>();
 
 	public LexiNode(char letter, Word word) {
 		this.letter = letter;
@@ -28,60 +28,83 @@ public class LexiNode {
 			}
 		}
 	}
-	
-	public LexiNode findWord(String mot){
-		Word word  = new Word(mot,"");
+
+	public LexiNode findWord(String mot) {
+		Word word = new Word(mot, "");
 		findNewWordBranch(word, 0);
 
-		
-		
 		return this;
 	}
-	
-	
-	protected LexiNode findBranch(Word word, int position){
-		
+
+	private LexiNode findBranch(Word word, int position) {
+
 		boolean exist = false;
-		if (children != null && !children.isEmpty()) {
+		LexiNode nextNode = this;
+		if (word.getWord().length() > position) {
 
-			if (word.getWord().length() > position) {
-
-				for (LexiNode child : children) {
-					if (child.letter == word.getWord().charAt(position)) {
-						child.findNewWordBranch(word, position + 1);
-						exist = true;
-						break;
-					}
+			for (LexiNode child : children) {
+				if (child.letter == word.getWord().charAt(position)) {
+					nextNode = child;
+					exist = true;
+					break;
 				}
-			}else {
-				return this;
 			}
+		} else {
+			return nextNode;
 		}
+
 		if (!exist) {
-			return this;
+			return nextNode;
 		}
-		return null;
+
+		return nextNode.findBranch(word, position + 1);
+	}
+
+	public LinkedList<Word> Search(Word word) {
+
+		LexiNode branch = findBranch(word, 0);
+		LinkedList<Word> list = new LinkedList<Word>();
+		if (branch.getWord() != null) {
+			list.add(branch.getWord());
+		}
+		
+		list = otherWords(branch, list);
+		
+		return list;
 	}
 	
+	public LinkedList<Word> otherWords(LexiNode branch, LinkedList<Word> list){
+		
+		for (LexiNode child : branch.getChildren()) {
+			if (child.getWord() != null) {
+				list.add(child.getWord());
+			}
+			
+			if (child.getChildren() != null) {
+				list = otherWords(child, list);
+			}
+		}
+		
+		return list;
+	}
 
 	public void findNewWordBranch(Word word, int position) {
 
 		boolean exist = false;
-		if (children != null && !children.isEmpty()) {
 
-			if (word.getWord().length() > position) {
+		if (word.getWord().length() > position) {
 
-				for (LexiNode child : children) {
-					if (child.letter == word.getWord().charAt(position)) {
-						child.findNewWordBranch(word, position + 1);
-						exist = true;
-						break;
-					}
+			for (LexiNode child : children) {
+				if (child.letter == word.getWord().charAt(position)) {
+					child.findNewWordBranch(word, position + 1);
+					exist = true;
+					break;
 				}
-			}else {
-				exist = true;
 			}
+		} else {
+			exist = true;
 		}
+
 		if (!exist) {
 			addWord(word, position);
 		}
@@ -90,8 +113,6 @@ public class LexiNode {
 
 	public void addWord(Word word, int position) {
 
-		
-		
 		if ((word.getWord().length() - 1) == position) {
 			children.add(new LexiNode(word.getWord().charAt(position), word));
 		} else {

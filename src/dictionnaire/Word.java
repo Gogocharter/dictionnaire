@@ -2,20 +2,20 @@ package dictionnaire;
 
 public class Word {
 	
-	private String Word;
+	private String word;
 	private String defenition;
 	
 	public Word(String word, String defenition) {
-		Word = word;
+		this.word = word;
 		this.defenition = defenition;
 	}
 	
 	public String getWord() {
-		return Word;
+		return word;
 	}
-	public void setWord(String word) {
-		Word = word;
-	}
+//	public void setWord(String word) {
+//		this.word = word;
+//	}
 	public String getDefenition() {
 		return defenition;
 	}

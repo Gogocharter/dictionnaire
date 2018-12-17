@@ -68,12 +68,24 @@ public class LexiNode {
 			list.add(branch.getWord());
 		}
 		
-		list = otherWords(branch, list);
+		list = allWords(branch, list);
 		
 		return list;
 	}
 	
-	public LinkedList<Word> otherWords(LexiNode branch, LinkedList<Word> list){
+	public Word SearchSingleWord(Word word){
+		
+		LexiNode branch = findBranch(word, 0);
+		
+		if (branch.word == null) {
+			return null;
+		}
+				
+		return branch.getWord();
+		
+	}
+	
+	public LinkedList<Word> allWords(LexiNode branch, LinkedList<Word> list){
 		
 		for (LexiNode child : branch.getChildren()) {
 			if (child.getWord() != null) {
@@ -81,7 +93,7 @@ public class LexiNode {
 			}
 			
 			if (child.getChildren() != null) {
-				list = otherWords(child, list);
+				list = allWords(child, list);
 			}
 		}
 		
@@ -132,11 +144,11 @@ public class LexiNode {
 		this.letter = letter;
 	}
 
-	public Word getWord() {
+	private Word getWord() {
 		return word;
 	}
 
-	public void setWord(Word word) {
+	private void setWord(Word word) {
 		this.word = word;
 	}
 

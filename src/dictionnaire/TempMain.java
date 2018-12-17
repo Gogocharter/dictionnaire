@@ -32,10 +32,26 @@ public class TempMain extends Application {
 			System.out.println(word.getWord());
 		}
 		
+		System.out.println("-----------------------------------------");
+		
+		Word word4 = dictionary.SearchSingleWord(word1);
+		System.out.println(word4.getDefenition());
+		
+		System.out.println("-----------------------------------------");
+		
+		test = new LinkedList<Word>();
+		test = dictionary.allWords(dictionary, test);
+		for (Word word : test) {
+			System.out.println(word.getWord());
+		}
+		
 		launch(args);
 
 	}
 
+
+	
+	
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		window = new MainWindow();

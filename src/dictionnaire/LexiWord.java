@@ -1,11 +1,11 @@
 package dictionnaire;
 
-public class Word {
+public class LexiWord {
 	
 	private String word;
 	private String defenition;
 	
-	public Word(String word, String defenition) {
+	public LexiWord(String word, String defenition) {
 		this.word = word;
 		this.defenition = defenition;
 	}

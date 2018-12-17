@@ -17,9 +17,9 @@ public class TempMain extends Application {
 		
 		LexiNode dictionary = new LexiNode(' ');
 		
-		Word word1 = new Word("test", "tester de quoi");
-		Word word2 = new Word("tester", "tester de quoi");
-		Word word3 = new Word("testorons", "tester de quoi");
+		LexiWord word1 = new LexiWord("test", "tester de quoi");
+		LexiWord word2 = new LexiWord("tester", "tester de quoi");
+		LexiWord word3 = new LexiWord("testorons", "tester de quoi");
 
 		dictionary.findNewWordBranch(word1, 0);
 		dictionary.findNewWordBranch(word2, 0);
@@ -27,21 +27,21 @@ public class TempMain extends Application {
 		
 		// Start graphical interface.
 		
-		LinkedList<Word> test  = dictionary.Search(word1);
-		for (Word word : test) {
+		LinkedList<LexiWord> test  = dictionary.Search(word1);
+		for (LexiWord word : test) {
 			System.out.println(word.getWord());
 		}
 		
 		System.out.println("-----------------------------------------");
 		
-		Word word4 = dictionary.SearchSingleWord(word1);
+		LexiWord word4 = dictionary.SearchSingleWord(word1);
 		System.out.println(word4.getDefenition());
 		
 		System.out.println("-----------------------------------------");
 		
-		test = new LinkedList<Word>();
+		test = new LinkedList<LexiWord>();
 		test = dictionary.allWords(dictionary, test);
-		for (Word word : test) {
+		for (LexiWord word : test) {
 			System.out.println(word.getWord());
 		}
 		

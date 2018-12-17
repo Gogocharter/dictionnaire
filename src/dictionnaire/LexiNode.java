@@ -5,10 +5,10 @@ import java.util.LinkedList;
 public class LexiNode {
 
 	char letter;
-	private Word word;
+	private LexiWord word;
 	private LinkedList<LexiNode> children = new LinkedList<LexiNode>();
 
-	public LexiNode(char letter, Word word) {
+	public LexiNode(char letter, LexiWord word) {
 		this.letter = letter;
 		this.word = word;
 	}
@@ -17,7 +17,7 @@ public class LexiNode {
 		this.letter = letter;
 	}
 
-	public void exist(Word word, int position) {
+	public void exist(LexiWord word, int position) {
 
 		if (word.getWord().length() > position) {
 			for (LexiNode child : children) {
@@ -30,13 +30,13 @@ public class LexiNode {
 	}
 
 	public LexiNode findWord(String mot) {
-		Word word = new Word(mot, "");
+		LexiWord word = new LexiWord(mot, "");
 		findNewWordBranch(word, 0);
 
 		return this;
 	}
 
-	private LexiNode findBranch(Word word, int position) {
+	private LexiNode findBranch(LexiWord word, int position) {
 
 		boolean exist = false;
 		LexiNode nextNode = this;
@@ -60,10 +60,10 @@ public class LexiNode {
 		return nextNode.findBranch(word, position + 1);
 	}
 
-	public LinkedList<Word> Search(Word word) {
+	public LinkedList<LexiWord> Search(LexiWord word) {
 
 		LexiNode branch = findBranch(word, 0);
-		LinkedList<Word> list = new LinkedList<Word>();
+		LinkedList<LexiWord> list = new LinkedList<LexiWord>();
 		if (branch.getWord() != null) {
 			list.add(branch.getWord());
 		}
@@ -73,7 +73,7 @@ public class LexiNode {
 		return list;
 	}
 	
-	public Word SearchSingleWord(Word word){
+	public LexiWord SearchSingleWord(LexiWord word){
 		
 		LexiNode branch = findBranch(word, 0);
 		
@@ -85,7 +85,7 @@ public class LexiNode {
 		
 	}
 	
-	public LinkedList<Word> allWords(LexiNode branch, LinkedList<Word> list){
+	public LinkedList<LexiWord> allWords(LexiNode branch, LinkedList<LexiWord> list){
 		
 		for (LexiNode child : branch.getChildren()) {
 			if (child.getWord() != null) {
@@ -100,7 +100,7 @@ public class LexiNode {
 		return list;
 	}
 
-	public void findNewWordBranch(Word word, int position) {
+	public void findNewWordBranch(LexiWord word, int position) {
 
 		boolean exist = false;
 
@@ -123,7 +123,7 @@ public class LexiNode {
 
 	}
 
-	public void addWord(Word word, int position) {
+	public void addWord(LexiWord word, int position) {
 
 		if ((word.getWord().length() - 1) == position) {
 			children.add(new LexiNode(word.getWord().charAt(position), word));
@@ -144,11 +144,11 @@ public class LexiNode {
 		this.letter = letter;
 	}
 
-	private Word getWord() {
+	private LexiWord getWord() {
 		return word;
 	}
 
-	private void setWord(Word word) {
+	private void setWord(LexiWord word) {
 		this.word = word;
 	}
 

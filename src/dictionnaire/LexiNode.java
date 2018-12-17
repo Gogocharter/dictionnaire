@@ -28,6 +28,41 @@ public class LexiNode {
 			}
 		}
 	}
+	
+	public LexiNode findWord(String mot){
+		Word word  = new Word(mot,"");
+		findNewWordBranch(word, 0);
+
+		
+		
+		return this;
+	}
+	
+	
+	protected LexiNode findBranch(Word word, int position){
+		
+		boolean exist = false;
+		if (children != null && !children.isEmpty()) {
+
+			if (word.getWord().length() > position) {
+
+				for (LexiNode child : children) {
+					if (child.letter == word.getWord().charAt(position)) {
+						child.findNewWordBranch(word, position + 1);
+						exist = true;
+						break;
+					}
+				}
+			}else {
+				return this;
+			}
+		}
+		if (!exist) {
+			return this;
+		}
+		return null;
+	}
+	
 
 	public void findNewWordBranch(Word word, int position) {
 
@@ -55,6 +90,7 @@ public class LexiNode {
 
 	public void addWord(Word word, int position) {
 
+		
 		
 		if ((word.getWord().length() - 1) == position) {
 			children.add(new LexiNode(word.getWord().charAt(position), word));

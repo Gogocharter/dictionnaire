@@ -24,6 +24,7 @@ public class TempMain extends Application {
 		dictionary.findNewWordBranch(word1, 0);
 		dictionary.findNewWordBranch(word2, 0);
 		dictionary.findNewWordBranch(word3, 0);
+		dictionary.findNewWordBranch(word1, 0);
 		
 		// Start graphical interface.
 		
@@ -44,6 +45,14 @@ public class TempMain extends Application {
 		for (LexiWord word : test) {
 			System.out.println(word.getWord());
 		}
+		
+		//mod
+		System.out.println("----------------UPDATE-------------------------");
+		//mot n'existe pas
+		LexiWord word6 = new LexiWord("tesfdvadft", "Tester test test tester");
+		dictionary.updateLexiWord(word6);
+		word4 = dictionary.SearchSingleWord(word1);
+		System.out.println(word4.getDefenition());
 		
 		launch(args);
 

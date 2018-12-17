@@ -5,12 +5,12 @@ import java.util.LinkedList;
 public class LexiNode {
 
 	char letter;
-	private LexiWord word;
+	private LexiWord lexiWord;
 	private LinkedList<LexiNode> children = new LinkedList<LexiNode>();
 
 	public LexiNode(char letter, LexiWord word) {
 		this.letter = letter;
-		this.word = word;
+		this.lexiWord = word;
 	}
 
 	public LexiNode(char letter) {
@@ -64,8 +64,8 @@ public class LexiNode {
 
 		LexiNode branch = findBranch(word, 0);
 		LinkedList<LexiWord> list = new LinkedList<LexiWord>();
-		if (branch.getWord() != null) {
-			list.add(branch.getWord());
+		if (branch.getLexiWord() != null) {
+			list.add(branch.getLexiWord());
 		}
 		
 		list = allWords(branch, list);
@@ -77,19 +77,19 @@ public class LexiNode {
 		
 		LexiNode branch = findBranch(word, 0);
 		
-		if (branch.word == null) {
+		if (branch.lexiWord == null) {
 			return null;
 		}
 				
-		return branch.getWord();
+		return branch.getLexiWord();
 		
 	}
 	
 	public LinkedList<LexiWord> allWords(LexiNode branch, LinkedList<LexiWord> list){
 		
 		for (LexiNode child : branch.getChildren()) {
-			if (child.getWord() != null) {
-				list.add(child.getWord());
+			if (child.getLexiWord() != null) {
+				list.add(child.getLexiWord());
 			}
 			
 			if (child.getChildren() != null) {
@@ -144,12 +144,12 @@ public class LexiNode {
 		this.letter = letter;
 	}
 
-	private LexiWord getWord() {
-		return word;
+	private LexiWord getLexiWord() {
+		return lexiWord;
 	}
 
-	private void setWord(LexiWord word) {
-		this.word = word;
+	private void setLexiWord(LexiWord word) {
+		this.lexiWord = word;
 	}
 
 	public LinkedList<LexiNode> getChildren() {

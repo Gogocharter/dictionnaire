@@ -222,7 +222,7 @@ public class LexiNode {
 	 * @param word
 	 * @param position
 	 */
-	public void addLexiWord(LexiWord word, int position) {
+	private void addLexiWord(LexiWord word, int position) {
 
 		if ((word.getWord().length() - 1) == position) {
 			children.add(new LexiNode(word.getWord().charAt(position), word));
@@ -232,21 +232,15 @@ public class LexiNode {
 
 			children.getLast().addLexiWord(word, position + 1);
 		}
-
 	}
 
 	/**
 	 * 
 	 * @param word
 	 */
-	public void updateLexiWord(LexiWord word) {
-		LexiNode branch = findBranch(word.getWord(), 0);
+	private void updateLexiWord(LexiWord word) {
 
-		if (branch != null) {
-			branch.setLexiWord(word);
-			// ou
-			// branch.getLexiWord().setDefenition(word.getDefenition());
-		}
+		this.setLexiWord(word);
 	}
 
 	/**

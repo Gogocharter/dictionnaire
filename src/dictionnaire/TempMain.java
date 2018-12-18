@@ -60,7 +60,6 @@ public class TempMain extends Application {
 		System.out.println("----------------UPDATE-------------------------");
 		//mot n'existe pas
 		LexiWord word6 = new LexiWord("tesfdvadft", "Tester test test tester");
-		dictionary.updateLexiWord(word6);
 		word4 = dictionary.SearchSingleWord("test");
 		System.out.println(word4.getDefenition());
 		

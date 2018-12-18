@@ -2,6 +2,7 @@ package dictionnaire;
 
 import java.util.LinkedList;
 
+import dictionnaire.LexiNode;
 import graphics.MainWindow;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -12,10 +13,11 @@ import utils.Constants;
 public class TempMain extends Application {
 	
 	Stage window;
+	static LexiNode dictionary;
 
 	public static void main(String[] args) {
 		
-		LexiNode dictionary = new LexiNode();
+		dictionary = new LexiNode();
 		
 		dictionary.LoadFile("D:\\Workspace\\git\\dictionnaire\\Dictio.txt");
 		
@@ -73,7 +75,7 @@ public class TempMain extends Application {
 	
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		window = new MainWindow();
+		window = new MainWindow(dictionary);
 		window.show();
 	}
 

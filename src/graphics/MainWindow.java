@@ -55,6 +55,8 @@ public class MainWindow extends Stage {
 	    Button buttonAddEdit = new Button(Constants.BUTTON_ADD_EDIT);
 	    buttonAddEdit.prefWidthProperty().bind(bottomBox.widthProperty());
 	    
+	    buttonAddEdit.setOnAction(e -> addOrModifyWord());
+	    
 	    bottomBox.getChildren().addAll(buttonAddEdit);
 
 	    return bottomBox;
@@ -95,13 +97,6 @@ public class MainWindow extends Stage {
 	    textFieldWordDefinition.prefWidthProperty().bind(centerBox.widthProperty());
 	    textFieldWordDefinition.prefHeightProperty().bind(centerBox.heightProperty());
 	    textFieldWordDefinition.setAlignment(Pos.TOP_LEFT);
-	    
-	    textFieldWordDefinition.textProperty().addListener((obs, oldText, newText) -> {
-	    	if (selectedWord != null) {
-	    		oldText = textFieldWordDefinition.getText();
-	    		selectedWord.setDefenition(newText);
-	    	}
-	    });
 	    
 	    centerBox.getChildren().addAll(textFieldWordDefinition);
 
@@ -196,5 +191,14 @@ public class MainWindow extends Stage {
         if (file != null) {
             dictionary.saveFile(file.getAbsolutePath());
         }
+	}
+	
+	private void addOrModifyWord() {
+		if (textFieldWord.getText() == "") return;
+		if (textFieldWordDefinition.getText() == "") return;
+		
+		LexiWord word = new LexiWord(textFieldWord.getText(), textFieldWordDefinition.getText());
+		
+		dictionary.findNewWordBranch(word, 0);
 	}
 }

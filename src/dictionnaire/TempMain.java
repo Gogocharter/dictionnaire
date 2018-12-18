@@ -65,6 +65,9 @@ public class TempMain extends Application {
 		
 		
 		dictionary.saveFile("D:\\Workspace\\git\\dictionnaire\\Dictio.txt");
+		
+		dictionary = new LexiNode();
+		
 		launch(args);
 
 	}

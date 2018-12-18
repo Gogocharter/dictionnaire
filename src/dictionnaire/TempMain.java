@@ -15,12 +15,17 @@ public class TempMain extends Application {
 
 	public static void main(String[] args) {
 		
-		LexiNode dictionary = new LexiNode(' ');
+		LexiNode dictionary = new LexiNode();
+		
+		dictionary.LoadFile("D:\\Workspace\\git\\dictionnaire\\Dictio.txt");
 		
 		LexiWord word1 = new LexiWord("test", "tester de quoi");
 		LexiWord word2 = new LexiWord("tester", "tester de quoi");
 		LexiWord word3 = new LexiWord("testorons", "tester de quoi");
 
+		LexiWord rngword = new LexiWord("sdafasdfasd", "tester de quoi");
+
+		
 		dictionary.findNewWordBranch(word1, 0);
 		dictionary.findNewWordBranch(word2, 0);
 		dictionary.findNewWordBranch(word3, 0);
@@ -28,10 +33,13 @@ public class TempMain extends Application {
 		
 		// Start graphical interface.
 		
-		LinkedList<LexiWord> test  = dictionary.Search(word1);
-		for (LexiWord word : test) {
-			System.out.println(word.getWord());
+		LinkedList<LexiWord> test  = dictionary.Search(rngword);
+		if (test != null) {
+			for (LexiWord word : test) {
+				System.out.println(word.getWord());
+			}
 		}
+		
 		
 		System.out.println("-----------------------------------------");
 		
@@ -54,6 +62,8 @@ public class TempMain extends Application {
 		word4 = dictionary.SearchSingleWord(word1);
 		System.out.println(word4.getDefenition());
 		
+		
+		dictionary.saveFile("D:\\Workspace\\git\\dictionnaire\\Dictio.txt");
 		launch(args);
 
 	}

@@ -28,10 +28,10 @@ public class TempMain extends Application {
 		LexiWord rngword = new LexiWord("sdafasdfasd", "tester de quoi");
 
 		
-		dictionary.findNewWordBranch(word1, 0);
-		dictionary.findNewWordBranch(word2, 0);
-		dictionary.findNewWordBranch(word3, 0);
-		dictionary.findNewWordBranch(word1, 0);
+		dictionary.findAddorUpdateBranch(word1, 0);
+		dictionary.findAddorUpdateBranch(word2, 0);
+		dictionary.findAddorUpdateBranch(word3, 0);
+		dictionary.findAddorUpdateBranch(word1, 0);
 		
 		// Start graphical interface.
 		

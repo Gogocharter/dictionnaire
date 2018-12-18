@@ -17,7 +17,7 @@ class LexiNodeUnitTest {
 		LexiNode dictionnary = new LexiNode();
 		LexiWord lexiWord = new LexiWord("test", "allo");
 
-		dictionnary.findNewWordBranch(lexiWord, 0);
+		dictionnary.findAddorUpdateBranch(lexiWord, 0);
 
 		String result = "testallo";
 		assertEquals(
@@ -56,10 +56,10 @@ class LexiNodeUnitTest {
 		LexiNode dictionnary = new LexiNode();
 
 		LexiWord lexiWord = new LexiWord("test", "allo");
-		dictionnary.findNewWordBranch(lexiWord, 0);
+		dictionnary.findAddorUpdateBranch(lexiWord, 0);
 
 		LexiWord lexiWord2 = new LexiWord("test", "tester ca");
-		dictionnary.findNewWordBranch(lexiWord2, 0);
+		dictionnary.findAddorUpdateBranch(lexiWord2, 0);
 
 		String result = "testtester ca";
 		assertEquals(result,
@@ -71,10 +71,10 @@ class LexiNodeUnitTest {
 		LexiNode dictionnary = new LexiNode();
 
 		LexiWord lexiWord = new LexiWord("test", "allo");
-		dictionnary.findNewWordBranch(lexiWord, 0);
+		dictionnary.findAddorUpdateBranch(lexiWord, 0);
 
 		LexiWord lexiWord2 = new LexiWord("test", "tester ca");
-		dictionnary.findNewWordBranch(lexiWord2, 0);
+		dictionnary.findAddorUpdateBranch(lexiWord2, 0);
 
 		String result = "testtester ca";
 		assertEquals(
@@ -97,9 +97,9 @@ class LexiNodeUnitTest {
 		LexiWord word3 = new LexiWord("testorons", "tester de quoi");
 		
 		LinkedList<LexiWord> result = new LinkedList<LexiWord>();
-		dictionnary2.findNewWordBranch(word1, 0);
-		dictionnary2.findNewWordBranch(word2, 0);
-		dictionnary2.findNewWordBranch(word3, 0);
+		dictionnary2.findAddorUpdateBranch(word1, 0);
+		dictionnary2.findAddorUpdateBranch(word2, 0);
+		dictionnary2.findAddorUpdateBranch(word3, 0);
 		
 		result.add(word1);
 		result.add(word2);

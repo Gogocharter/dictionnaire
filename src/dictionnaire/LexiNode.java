@@ -66,7 +66,7 @@ public class LexiNode {
 				String[] wordDef = ligne.trim().split(" & ");
 				if (wordDef.length == 2) {
 					LexiWord newWord = new LexiWord(wordDef[0].toLowerCase(), wordDef[1]);
-					findNewWordBranch(newWord, 0);
+					findAddorUpdateBranch(newWord, 0);
 				}
 
 			}
@@ -180,7 +180,7 @@ public class LexiNode {
 
 	/**
 	 * Methode permettant de retourner tout les LexiWord possible dans le
-	 * dictionnaire ï¿½ partir d'une branche dans le node
+	 * dictionnaire à partir d'une branche dans le node
 	 * 
 	 * @param branch Branche oï¿½ la recherche est rendu
 	 * @param list   liste de tout les Lexiword trouvï¿½
@@ -207,7 +207,7 @@ public class LexiNode {
 	 * @param word
 	 * @param position
 	 */
-	public void findNewWordBranch(LexiWord word, int position) {
+	public void findAddorUpdateBranch(LexiWord word, int position) {
 
 		boolean exist = false;
 
@@ -215,7 +215,7 @@ public class LexiNode {
 
 			for (LexiNode child : children) {
 				if (child.letter == word.getWord().charAt(position)) {
-					child.findNewWordBranch(word, position + 1);
+					child.findAddorUpdateBranch(word, position + 1);
 					exist = true;
 					break;
 				}

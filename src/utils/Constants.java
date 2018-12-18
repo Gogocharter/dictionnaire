@@ -1,5 +1,11 @@
 package utils;
 
+/**
+ * This class contains some constants used throughout the application.
+ * 
+ * @author Etienne Audet-Cobello
+ *
+ */
 public final class Constants {
 	
 	public static final String APP_NAME = "Dictio";

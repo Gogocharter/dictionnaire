@@ -21,6 +21,14 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import utils.Constants;
 
+/**
+ * This class is used to display the main application window and
+ * create it's components, also to regulate how they interact
+ * with each other.
+ * 
+ * @author Etienne Audet-Cobello
+ *
+ */
 public class MainWindow extends Stage {
 	
 	LexiWord selectedWord;
@@ -30,6 +38,13 @@ public class MainWindow extends Stage {
 	TextField textFieldWord;
 	TextField textFieldWordDefinition;
 	
+	/**
+	 * Constructor.
+	 * 
+	 * This constructor initializes a new MainWindow stage.
+	 * 
+	 * @param dictionary the dictionnary the application is using
+	 */
 	public MainWindow(LexiNode dictionary) {
 		this.setTitle(Constants.APP_NAME);
 		
@@ -47,6 +62,11 @@ public class MainWindow extends Stage {
 		this.dictionary = dictionary;
 	}
 	
+	/**
+	 * Create the box in the MainWindow's layout.
+	 * 
+	 * @return Node the box to be added to the layout
+	 */
 	private Node createBottomBox() {
 		HBox bottomBox = new HBox();
 		bottomBox.setPadding(new Insets(5,12,5,12));
@@ -62,6 +82,11 @@ public class MainWindow extends Stage {
 	    return bottomBox;
 	}
 
+	/**
+	 * Create the box in the MainWindow's layout.
+	 * 
+	 * @return Node the box to be added to the layout
+	 */
 	private Node createRightBox() {
 		VBox rightBox = new VBox();
 		rightBox.setPadding(new Insets(15,12,15,12));
@@ -88,6 +113,11 @@ public class MainWindow extends Stage {
 	    return rightBox;
 	}
 
+	/**
+	 * Create the box in the MainWindow's layout.
+	 * 
+	 * @return Node the box to be added to the layout
+	 */
 	private Node createCenterBox() {
 		HBox centerBox = new HBox();
 		centerBox.setPadding(new Insets(15,12,15,12));
@@ -103,6 +133,11 @@ public class MainWindow extends Stage {
 	    return centerBox;
 	}
 
+	/**
+	 * Create the box in the MainWindow's layout.
+	 * 
+	 * @return Node the box to be added to the layout
+	 */
 	private Node createLeftBox() {
 		VBox leftBox = new VBox();
 		leftBox.setPadding(new Insets(15,12,15,12));
@@ -140,6 +175,11 @@ public class MainWindow extends Stage {
 	    return leftBox;
 	}
 
+	/**
+	 * Create the box in the MainWindow's layout.
+	 * 
+	 * @return Node the box to be added to the layout
+	 */
 	public HBox createTopBox() {
 		HBox topBox = new HBox();
 		topBox.setPadding(new Insets(15,12,15,12));
@@ -163,6 +203,10 @@ public class MainWindow extends Stage {
 	    return topBox;
 	}
 
+	/**
+	 * Creates a FileChooser which is used to select a dictionary file to get
+	 * words from.
+	 */
 	private void openFileChooser() {
 		FileChooser fileChooser = new FileChooser();
 		fileChooser.setTitle("Open Dictionnary File");
@@ -184,6 +228,10 @@ public class MainWindow extends Stage {
 		}
 	}
 	
+	/**
+	 * Creates a FileChooser which is used to save a dictionary file with
+	 * new or modified words.
+	 */
 	private void openFileSaver() {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Save Dictionnary File");
@@ -193,6 +241,10 @@ public class MainWindow extends Stage {
         }
 	}
 	
+	/**
+	 * Adds a new word to the dictionary or modifies an existing
+	 * word's definition depending on if it is in the dictionary or not.
+	 */
 	private void addOrModifyWord() {
 		if (textFieldWord.getText() == "") return;
 		if (textFieldWordDefinition.getText() == "") return;

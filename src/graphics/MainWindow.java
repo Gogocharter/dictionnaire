@@ -13,6 +13,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -22,9 +23,12 @@ import utils.Constants;
 
 public class MainWindow extends Stage {
 	
+	LexiWord selectedWord;
 	LexiNode dictionary;
-	ListView<String> listPotentialWords;
+	ListView<LexiWord> listPotentialWords;
 	ListView<LexiWord> listAllWords;
+	TextField textFieldWord;
+	TextField textFieldWordDefinition;
 	
 	public MainWindow(LexiNode dictionary) {
 		this.setTitle(Constants.APP_NAME);
@@ -67,6 +71,13 @@ public class MainWindow extends Stage {
 	    listAllWords.prefHeightProperty().bind(rightBox.heightProperty());
 	    
 	    rightBox.getChildren().addAll(listAllWords);
+	    
+	    listAllWords.setOnMouseClicked(new EventHandler<MouseEvent>() {
+	        public void handle(MouseEvent event) {
+	            selectedWord = listAllWords.getSelectionModel().getSelectedItem();
+	            textFieldWordDefinition.setText(selectedWord.getDefenition());
+	        }
+	    });
 
 	    return rightBox;
 	}
@@ -76,7 +87,7 @@ public class MainWindow extends Stage {
 		centerBox.setPadding(new Insets(15,12,15,12));
 		centerBox.setSpacing(10);
 		
-	    TextField textFieldWordDefinition = new TextField();
+	    textFieldWordDefinition = new TextField();
 	    
 	    textFieldWordDefinition.prefWidthProperty().bind(centerBox.widthProperty());
 	    textFieldWordDefinition.prefHeightProperty().bind(centerBox.heightProperty());
@@ -93,12 +104,28 @@ public class MainWindow extends Stage {
 		leftBox.setPadding(new Insets(15,12,15,12));
 		leftBox.setSpacing(10);
 		leftBox.setAlignment(Pos.TOP_CENTER);
-		
-	    TextField textFieldWord = new TextField();
-	    textFieldWord.setPrefSize(300, 30);
 	    
 	    listPotentialWords = new ListView<>();
-	    listPotentialWords.getItems().addAll("Wassup", "Man", "Yeahhh");
+	    
+	    listPotentialWords.setOnMouseClicked(new EventHandler<MouseEvent>() {
+	        public void handle(MouseEvent event) {
+	            selectedWord = listPotentialWords.getSelectionModel().getSelectedItem();
+	            textFieldWordDefinition.setText(selectedWord.getDefenition());
+	        }
+	    });
+	   
+	    textFieldWord = new TextField();
+	    textFieldWord.setPrefSize(300, 30);
+	    textFieldWord.textProperty().addListener((obs, oldText, newText) -> {
+	    	selectedWord = null;
+	    	listPotentialWords.getItems().clear();
+	    	
+	    	LinkedList<LexiWord> potentialWords = dictionary.Search(newText);
+	    	
+	        for (LexiWord word : potentialWords) {
+	        	listPotentialWords.getItems().add(word);
+			}
+	    });
 	    
 	    leftBox.getChildren().addAll(textFieldWord, listPotentialWords);
 

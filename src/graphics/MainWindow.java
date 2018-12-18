@@ -75,7 +75,11 @@ public class MainWindow extends Stage {
 	    listAllWords.setOnMouseClicked(new EventHandler<MouseEvent>() {
 	        public void handle(MouseEvent event) {
 	            selectedWord = listAllWords.getSelectionModel().getSelectedItem();
-	            textFieldWordDefinition.setText(selectedWord.getDefenition());
+	            
+	            if (selectedWord != null) {
+		            textFieldWordDefinition.setText(selectedWord.getDefenition());
+		            textFieldWord.setText(selectedWord.getWord());
+	            }
 	        }
 	    });
 
@@ -88,11 +92,16 @@ public class MainWindow extends Stage {
 		centerBox.setSpacing(10);
 		
 	    textFieldWordDefinition = new TextField();
-	    
 	    textFieldWordDefinition.prefWidthProperty().bind(centerBox.widthProperty());
 	    textFieldWordDefinition.prefHeightProperty().bind(centerBox.heightProperty());
-	    
 	    textFieldWordDefinition.setAlignment(Pos.TOP_LEFT);
+	    
+	    textFieldWordDefinition.textProperty().addListener((obs, oldText, newText) -> {
+	    	if (selectedWord != null) {
+	    		oldText = textFieldWordDefinition.getText();
+	    		selectedWord.setDefenition(newText);
+	    	}
+	    });
 	    
 	    centerBox.getChildren().addAll(textFieldWordDefinition);
 
@@ -110,7 +119,10 @@ public class MainWindow extends Stage {
 	    listPotentialWords.setOnMouseClicked(new EventHandler<MouseEvent>() {
 	        public void handle(MouseEvent event) {
 	            selectedWord = listPotentialWords.getSelectionModel().getSelectedItem();
-	            textFieldWordDefinition.setText(selectedWord.getDefenition());
+	            
+	            if (selectedWord != null) {
+		            textFieldWordDefinition.setText(selectedWord.getDefenition());
+	            }
 	        }
 	    });
 	   
@@ -118,6 +130,7 @@ public class MainWindow extends Stage {
 	    textFieldWord.setPrefSize(300, 30);
 	    textFieldWord.textProperty().addListener((obs, oldText, newText) -> {
 	    	selectedWord = null;
+	    	textFieldWordDefinition.setText(null);
 	    	listPotentialWords.getItems().clear();
 	    	
 	    	LinkedList<LexiWord> potentialWords = dictionary.Search(newText);
@@ -148,6 +161,8 @@ public class MainWindow extends Stage {
 	    Button buttonSave = new Button(Constants.BUTTON_SAVE);
 	    buttonSave.setPrefSize(100, 20);
 	    
+	    buttonSave.setOnAction(e -> openFileSaver());
+	    
 	    topBox.getChildren().addAll(buttonLoad, buttonSave);
 
 	    return topBox;
@@ -158,6 +173,12 @@ public class MainWindow extends Stage {
 		fileChooser.setTitle("Open Dictionnary File");
         File file = fileChooser.showOpenDialog(this);
         
+        if (file == null) { return; };
+        
+        dictionary = new LexiNode();
+        
+        listAllWords.getItems().clear();
+        	
         dictionary.LoadFile(file.getAbsolutePath());
         
         LinkedList<LexiWord> words = new LinkedList<LexiWord>();
@@ -166,5 +187,14 @@ public class MainWindow extends Stage {
         for (LexiWord word : words) {
 			listAllWords.getItems().add(word);
 		}
+	}
+	
+	private void openFileSaver() {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Save Dictionnary File");
+        File file = fileChooser.showSaveDialog(this);
+        if (file != null) {
+            dictionary.saveFile(file.getAbsolutePath());
+        }
 	}
 }

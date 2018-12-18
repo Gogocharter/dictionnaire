@@ -212,8 +212,8 @@ public class LexiNode {
 	 * This method either adds a word if it is not already in the dictionary or
 	 * modifies an existing word's definition.
 	 * 
-	 * @param word
-	 * @param position
+	 * @param word word to add or update
+	 * @param position position of the word in the recursive
 	 */
 	public void findAddorUpdateBranch(LexiWord word, int position) {
 

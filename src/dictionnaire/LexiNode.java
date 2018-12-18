@@ -109,14 +109,14 @@ public class LexiNode {
 	 * 
 	 * @requires
 	 */
-	private LexiNode findBranch(LexiWord word, int position) {
+	private LexiNode findBranch(String word, int position) {
 
 		boolean exist = false;
 		LexiNode nextNode = this;
-		if (word.getWord().length() > position) {
+		if (word.length() > position) {
 
 			for (LexiNode child : this.getChildren()) {
-				if (child.letter == word.getWord().charAt(position)) {
+				if (child.letter == word.charAt(position)) {
 					nextNode = child;
 					exist = true;
 					break;
@@ -140,7 +140,7 @@ public class LexiNode {
 	 * @param word mot à partir pour faire notre recherche
 	 * @return Retourne une liste de LexiWord possible
 	 */
-	public LinkedList<LexiWord> Search(LexiWord word) {
+	public LinkedList<LexiWord> Search(String word) {
 
 		LexiNode branch = findBranch(word, 0);
 
@@ -165,7 +165,7 @@ public class LexiNode {
 	 * @param word Mot recherhé dans la méthode
 	 * @return Retourne l'objet du mot(LexiWord)
 	 */
-	public LexiWord SearchSingleWord(LexiWord word) {
+	public LexiWord SearchSingleWord(String word) {
 
 		LexiNode branch = findBranch(word, 0);
 
@@ -252,7 +252,7 @@ public class LexiNode {
 	 * @param word
 	 */
 	public void updateLexiWord(LexiWord word) {
-		LexiNode branch = findBranch(word, 0);
+		LexiNode branch = findBranch(word.getWord(), 0);
 
 		if (branch != null) {
 			branch.setLexiWord(word);

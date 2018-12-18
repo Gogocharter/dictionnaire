@@ -17,7 +17,20 @@ class LexiNodeTest {
 		dictionnary.findNewWordBranch(lexiWord, 0);
 		
 		String result = "testallo"; 
-		assertEquals(dictionnary.SearchSingleWord(lexiWord).getWord() + dictionnary.SearchSingleWord(lexiWord).getDefenition(), result);
+		assertEquals(dictionnary.SearchSingleWord("test").getWord() + dictionnary.SearchSingleWord("test").getDefenition(), result);
+	}
+	
+	@Test
+	void addNewWordNodeNumber() {
+		LexiNode dictionnary = new LexiNode();
+		
+		dictionnary.LoadFile("\\test\\exemple1");
+		
+		int totalNode = 0;
+		
+		totalNode += dictionnary.getChildren().size();
+		
+		assertEquals(totalNode, 17);
 	}
 	
 	@Test
@@ -31,7 +44,7 @@ class LexiNodeTest {
 		dictionnary.findNewWordBranch(lexiWord2, 0);
 		
 		String result = "testtester ca"; 
-		assertEquals(dictionnary.SearchSingleWord(lexiWord).getWord() + dictionnary.SearchSingleWord(lexiWord).getDefenition(), result);
+		assertEquals(dictionnary.SearchSingleWord("test").getWord() + dictionnary.SearchSingleWord("test").getDefenition(), result);
 	}
 	
 	@Test
@@ -45,21 +58,21 @@ class LexiNodeTest {
 		dictionnary.updateLexiWord(lexiWord2);
 		
 		String result = "testtester ca"; 
-		assertEquals(dictionnary.SearchSingleWord(lexiWord).getWord() + dictionnary.SearchSingleWord(lexiWord).getDefenition(), result);
+		assertEquals(dictionnary.SearchSingleWord("test").getWord() + dictionnary.SearchSingleWord("test").getDefenition(), result);
 	}
 	
 	@Test
-	void UpdatingExistingWord() {
+	void UpdatingUnexistingExistingWord() {
 		LexiNode dictionnary = new LexiNode();
 		
 		LexiWord lexiWord = new LexiWord("test", "allo");
 		dictionnary.findNewWordBranch(lexiWord, 0);
 		
-		LexiWord lexiWord2 = new LexiWord("test", "tester ca");
+		LexiWord lexiWord2 = new LexiWord("asdf", "tester ca");
 		dictionnary.updateLexiWord(lexiWord2);
 		
-		String result = "testtester ca"; 
-		assertEquals(dictionnary.SearchSingleWord(lexiWord).getWord() + dictionnary.SearchSingleWord(lexiWord).getDefenition(), result);
+		String result = "testallo"; 
+		assertEquals(dictionnary.SearchSingleWord("test").getWord() + dictionnary.SearchSingleWord("test").getDefenition(), result);
 	}
 	
 	@Test

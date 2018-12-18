@@ -33,7 +33,7 @@ public class TempMain extends Application {
 		
 		// Start graphical interface.
 		
-		LinkedList<LexiWord> test  = dictionary.Search(rngword);
+		LinkedList<LexiWord> test  = dictionary.Search("sdafasdfasd");
 		if (test != null) {
 			for (LexiWord word : test) {
 				System.out.println(word.getWord());
@@ -43,7 +43,7 @@ public class TempMain extends Application {
 		
 		System.out.println("-----------------------------------------");
 		
-		LexiWord word4 = dictionary.SearchSingleWord(word1);
+		LexiWord word4 = dictionary.SearchSingleWord("test");
 		System.out.println(word4.getDefenition());
 		
 		System.out.println("-----------------------------------------");
@@ -59,7 +59,7 @@ public class TempMain extends Application {
 		//mot n'existe pas
 		LexiWord word6 = new LexiWord("tesfdvadft", "Tester test test tester");
 		dictionary.updateLexiWord(word6);
-		word4 = dictionary.SearchSingleWord(word1);
+		word4 = dictionary.SearchSingleWord("test");
 		System.out.println(word4.getDefenition());
 		
 		

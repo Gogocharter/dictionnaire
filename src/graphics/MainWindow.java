@@ -197,8 +197,10 @@ public class MainWindow extends Stage {
 		if (textFieldWord.getText() == "") return;
 		if (textFieldWordDefinition.getText() == "") return;
 		
-		LexiWord word = new LexiWord(textFieldWord.getText(), textFieldWordDefinition.getText());
+		LexiWord word = new LexiWord(textFieldWord.getText().trim(), textFieldWordDefinition.getText());
 		
 		dictionary.findAddorUpdateBranch(word, 0);
+		
+		
 	}
 }

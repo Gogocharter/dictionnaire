@@ -15,8 +15,17 @@ import java.util.LinkedList;
  */
 public class LexiNode {
 
+	/**
+	 * Lettre du node
+	 */
 	private char letter;
+	/**
+	 * mot relié au node
+	 */
 	private LexiWord lexiWord;
+	/**
+	 * Enfant du node
+	 */
 	private LinkedList<LexiNode> children = new LinkedList<LexiNode>();
 
 	/**
@@ -32,8 +41,8 @@ public class LexiNode {
 	}
 
 	/**
-	 * Constructeur d'un LexiNode: Contient un seul paramï¿½tre car il n'existe pas de
-	 * mot (LexiWord) a cet instance
+	 * Constructeur d'un LexiNode: Contient un seul paramï¿½tre car il n'existe pas
+	 * de mot (LexiWord) a cet instance
 	 * 
 	 * @param letter Lettre du LexiNode
 	 */
@@ -43,15 +52,14 @@ public class LexiNode {
 
 	/**
 	 * Contructeur initialisant le Node principale de LexiNode.
-	 * 
 	 */
 	public LexiNode() {
 		this.letter = ' ';
 	}
 
 	/**
-	 * This method opens a file when given a String path. It then
-	 * loads the words and their definitions into the dictionary.
+	 * This method opens a file when given a String path. It then loads the words
+	 * and their definitions into the dictionary.
 	 * 
 	 * @param path the path of the file we are loading
 	 */
@@ -77,8 +85,8 @@ public class LexiNode {
 	};
 
 	/**
-	 * This method saves a dictionary to a file when given
-	 * the path to save the file to.
+	 * This method saves a dictionary to a file when given the path to save the file
+	 * to.
 	 * 
 	 * @param path the path where the file will be saved
 	 */
@@ -134,8 +142,8 @@ public class LexiNode {
 	}
 
 	/**
-	 * Cette mï¿½thode permet de retourner les mots possible dans le dictionnaire ï¿½
-	 * partir d'un mot reï¿½us en paramï¿½tre.
+	 * Cette mï¿½thode permet de retourner les mots possible dans le dictionnaire
+	 * ï¿½ partir d'un mot reï¿½us en paramï¿½tre.
 	 * 
 	 * @param word mot ï¿½ partir pour faire notre recherche
 	 * @return Retourne une liste de LexiWord possible
@@ -233,9 +241,11 @@ public class LexiNode {
 	}
 
 	/**
+	 * This method create the nodes necessary to create the word to finally add the
+	 * word at the end of the node tree
 	 * 
-	 * @param word
-	 * @param position
+	 * @param word     LexiWord(Word) to add to the dictionary
+	 * @param position Position of the letter of the word the recursive method is at
 	 */
 	private void addLexiWord(LexiWord word, int position) {
 

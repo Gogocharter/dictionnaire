@@ -170,7 +170,7 @@ public class LexiNode {
 	 * dictionnaire à partir d'une branche dans le node
 	 * 
 	 * @param branch Branche où la recherche est rendu
-	 * @param list   liste de tout les Lexiword trouvé
+	 * @param list liste de tout les Lexiword trouvé
 	 * @return Retourne la liste de tout les Lexiword trouvé dans le node
 	 */
 	public LinkedList<LexiWord> allWords(LexiNode branch, LinkedList<LexiWord> list) {

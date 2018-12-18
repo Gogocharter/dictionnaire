@@ -85,20 +85,7 @@ public class LexiNode {
 		}
 		  
 	}
-
-//
-//	public void exist(LexiWord word, int position) {
-//
-//		if (word.getWord().length() > position) {
-//			for (LexiNode child : children) {
-//				if (child.letter == word.getWord().charAt(position)) {
-//					child.addLexiWord(word, position + 1);
-//					break;
-//				}
-//			}
-//		}
-//	}
-
+	
 	/**
 	 * Cette méthode permet de chercher la branche du LexiNode ou le mot (Word) en
 	 * paramètre se trouve
@@ -127,7 +114,7 @@ public class LexiNode {
 		}
 
 		if (!exist) {
-			return this;
+			return null;
 		}
 
 		return nextNode.findBranch(word, position + 1);
@@ -143,9 +130,10 @@ public class LexiNode {
 	public LinkedList<LexiWord> Search(String word) {
 
 		LexiNode branch = findBranch(word, 0);
-
+		LinkedList<LexiWord> list = new LinkedList<LexiWord>();
+		
 		if (branch != null) {
-			LinkedList<LexiWord> list = new LinkedList<LexiWord>();
+			list = new LinkedList<LexiWord>();
 			if (branch.getLexiWord() != null) {
 				list.add(branch.getLexiWord());
 			}
@@ -155,7 +143,7 @@ public class LexiNode {
 			return list;
 		}
 
-		return null;
+		return list;
 
 	}
 

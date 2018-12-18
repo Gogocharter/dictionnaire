@@ -48,7 +48,7 @@ class LexiNodeTest {
 	}
 	
 	@Test
-	void UpdatingExistingWord() {
+	void UpdateExistingWord() {
 		LexiNode dictionnary = new LexiNode();
 		
 		LexiWord lexiWord = new LexiWord("test", "allo");
@@ -62,7 +62,7 @@ class LexiNodeTest {
 	}
 	
 	@Test
-	void UpdatingUnexistingExistingWord() {
+	void UpdateUnexistingExistingWord() {
 		LexiNode dictionnary = new LexiNode();
 		
 		LexiWord lexiWord = new LexiWord("test", "allo");

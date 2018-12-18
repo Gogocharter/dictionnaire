@@ -197,10 +197,30 @@ public class MainWindow extends Stage {
 		if (textFieldWord.getText() == "") return;
 		if (textFieldWordDefinition.getText() == "") return;
 		
-		LexiWord word = new LexiWord(textFieldWord.getText().trim(), textFieldWordDefinition.getText());
+		LexiWord tempWord = new LexiWord(textFieldWord.getText().trim(), textFieldWordDefinition.getText());
 		
-		dictionary.findAddorUpdateBranch(word, 0);
+		dictionary.findAddorUpdateBranch(tempWord, 0);
 		
+		listAllWords.getItems().clear();
 		
+        LinkedList<LexiWord> words = new LinkedList<LexiWord>();
+        words = dictionary.allWords(dictionary, words);
+        for (LexiWord word : words) {
+			listAllWords.getItems().add(word);
+		}
+        
+        listPotentialWords.getItems().clear();
+        
+        LinkedList<LexiWord> potentialWords;
+        
+        if (selectedWord != null) {
+        	potentialWords = dictionary.Search(selectedWord.getWord());
+        } else {
+        	potentialWords = dictionary.Search(textFieldWord.getText());
+        }
+    	
+        for (LexiWord word : potentialWords) {
+        	listPotentialWords.getItems().add(word);
+		}
 	}
 }

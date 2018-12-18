@@ -1,5 +1,11 @@
 package graphics;
 
+import java.io.File;
+import java.util.LinkedList;
+
+import dictionnaire.LexiNode;
+import dictionnaire.LexiWord;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -10,12 +16,17 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import utils.Constants;
 
 public class MainWindow extends Stage {
 	
-	public MainWindow() {
+	LexiNode dictionary;
+	ListView<String> listPotentialWords;
+	ListView<LexiWord> listAllWords;
+	
+	public MainWindow(LexiNode dictionary) {
 		this.setTitle(Constants.APP_NAME);
 		
 		BorderPane layout = new BorderPane();
@@ -28,6 +39,8 @@ public class MainWindow extends Stage {
 		
 		Scene scene = new Scene(layout, Constants.APP_WIDTH, Constants.APP_HEIGHT);
 		this.setScene(scene);
+		
+		this.dictionary = dictionary;
 	}
 	
 	private Node createBottomBox() {
@@ -49,7 +62,7 @@ public class MainWindow extends Stage {
 		rightBox.setSpacing(10);
 		rightBox.setAlignment(Pos.TOP_CENTER);
 	    
-	    ListView<String> listAllWords = new ListView<>();
+	    listAllWords = new ListView<>();
 	    listAllWords.setPrefWidth(150);
 	    listAllWords.prefHeightProperty().bind(rightBox.heightProperty());
 	    
@@ -84,7 +97,7 @@ public class MainWindow extends Stage {
 	    TextField textFieldWord = new TextField();
 	    textFieldWord.setPrefSize(300, 30);
 	    
-	    ListView<String> listPotentialWords = new ListView<>();
+	    listPotentialWords = new ListView<>();
 	    listPotentialWords.getItems().addAll("Wassup", "Man", "Yeahhh");
 	    
 	    leftBox.getChildren().addAll(textFieldWord, listPotentialWords);
@@ -101,7 +114,10 @@ public class MainWindow extends Stage {
 		
 	    Button buttonLoad = new Button(Constants.BUTTON_LOAD);
 	    buttonLoad.setPrefSize(100, 20);
+	    
+	    buttonLoad.setOnAction(e -> openFileChooser());
 
+	   
 	    Button buttonSave = new Button(Constants.BUTTON_SAVE);
 	    buttonSave.setPrefSize(100, 20);
 	    
@@ -110,4 +126,18 @@ public class MainWindow extends Stage {
 	    return topBox;
 	}
 
+	private void openFileChooser() {
+		FileChooser fileChooser = new FileChooser();
+		fileChooser.setTitle("Open Dictionnary File");
+        File file = fileChooser.showOpenDialog(this);
+        
+        dictionary.LoadFile(file.getAbsolutePath());
+        
+        LinkedList<LexiWord> words = new LinkedList<LexiWord>();
+        words = dictionary.allWords(dictionary, words);
+        
+        for (LexiWord word : words) {
+			listAllWords.getItems().add(word);
+		}
+	}
 }

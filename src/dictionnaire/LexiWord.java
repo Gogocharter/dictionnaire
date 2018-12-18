@@ -23,6 +23,10 @@ public class LexiWord {
 		this.defenition = defenition;
 	}
 	
+	@Override
+	public String toString() {
+		return getWord();
+	}
 	
 
 }

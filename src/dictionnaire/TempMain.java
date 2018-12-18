@@ -45,9 +45,10 @@ public class TempMain extends Application {
 		
 		System.out.println("-----------------------------------------");
 		
-		LexiWord word4 = dictionary.SearchSingleWord("test");
-		System.out.println(word4.getDefenition());
-		
+
+//		LexiWord word4 = dictionary.SearchSingleWord("test");
+//		System.out.println(word4.getDefenition());
+//		
 		System.out.println("-----------------------------------------");
 		
 		test = new LinkedList<LexiWord>();
@@ -59,12 +60,11 @@ public class TempMain extends Application {
 		//mod
 		System.out.println("----------------UPDATE-------------------------");
 		//mot n'existe pas
-		LexiWord word6 = new LexiWord("tesfdvadft", "Tester test test tester");
-		word4 = dictionary.SearchSingleWord("test");
-		System.out.println(word4.getDefenition());
+		LexiWord word6 = new LexiWord("test", "Tester test test tester");
+		System.out.println(word1.getDefenition());
 		
 		
-		dictionary.saveFile("D:\\Workspace\\git\\dictionnaire\\Dictio.txt");
+		//dictionary.saveFile("D:\\Workspace\\git\\dictionnaire\\Dictio.txt");
 		launch(args);
 
 	}

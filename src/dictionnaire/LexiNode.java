@@ -55,13 +55,13 @@ public class LexiNode {
 			BufferedReader buffer = new BufferedReader(inputReader);
 			String ligne;
 			while ((ligne = buffer.readLine()) != null) {
-				
+
 				String[] wordDef = ligne.trim().split(" & ");
 				if (wordDef.length == 2) {
 					LexiWord newWord = new LexiWord(wordDef[0].toLowerCase(), wordDef[1]);
 					findNewWordBranch(newWord, 0);
 				}
-				
+
 			}
 			buffer.close();
 		} catch (Exception e) {
@@ -70,22 +70,22 @@ public class LexiNode {
 	};
 
 	public void saveFile(String path) {
-		
+
 		LinkedList<LexiWord> words = new LinkedList<LexiWord>();
 		words = allWords(this, words);
-		
+
 		try {
 			FileWriter file = new FileWriter(path);
-		    for (LexiWord lexiWord : words) {
-		    	file.write(lexiWord.getWord() + " & " + lexiWord.getDefenition() + "\n");
+			for (LexiWord lexiWord : words) {
+				file.write(lexiWord.getWord() + " & " + lexiWord.getDefenition() + "\n");
 			}
-		    file.close();
+			file.close();
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		  
+
 	}
-	
+
 	/**
 	 * Cette méthode permet de chercher la branche du LexiNode ou le mot (Word) en
 	 * paramètre se trouve
@@ -131,7 +131,7 @@ public class LexiNode {
 
 		LexiNode branch = findBranch(word, 0);
 		LinkedList<LexiWord> list = new LinkedList<LexiWord>();
-		
+
 		if (branch != null) {
 			list = new LinkedList<LexiWord>();
 			if (branch.getLexiWord() != null) {
@@ -170,7 +170,7 @@ public class LexiNode {
 	 * dictionnaire à partir d'une branche dans le node
 	 * 
 	 * @param branch Branche où la recherche est rendu
-	 * @param list liste de tout les Lexiword trouvé
+	 * @param list   liste de tout les Lexiword trouvé
 	 * @return Retourne la liste de tout les Lexiword trouvé dans le node
 	 */
 	public LinkedList<LexiWord> allWords(LexiNode branch, LinkedList<LexiWord> list) {
@@ -224,12 +224,36 @@ public class LexiNode {
 	 */
 	private void addLexiWord(LexiWord word, int position) {
 
-		if ((word.getWord().length() - 1) == position) {
-			children.add(new LexiNode(word.getWord().charAt(position), word));
-		} else {
-			LexiNode newNode = new LexiNode(word.getWord().charAt(position));
-			children.add(newNode);
+		LexiNode newNode;
 
+		if ((word.getWord().length() - 1) == position) {
+
+			newNode = new LexiNode(word.getWord().charAt(position), word);
+
+			if (children.isEmpty() || children.getLast().getLetter() < newNode.getLetter()) {
+				children.add(newNode);
+			} else {
+				for (int i = 0; i < children.size(); i++) {
+					if (newNode.getLetter() > children.get(i).getLetter()) {
+						children.add(i, newNode);
+						break;
+					}
+				}
+			}
+
+		} else {
+			newNode = new LexiNode(word.getWord().charAt(position));
+
+			if (children.isEmpty() || children.getLast().getLetter() < newNode.getLetter()) {
+				children.add(newNode);
+			} else {
+				for (int i = 0; i < children.size(); i++) {
+					if (newNode.getLetter() > children.get(i).getLetter()) {
+						children.add(i, newNode);
+						break;
+					}
+				}
+			}
 			children.getLast().addLexiWord(word, position + 1);
 		}
 	}

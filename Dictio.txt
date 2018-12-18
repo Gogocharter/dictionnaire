@@ -1,9 +1,4 @@
-tesfdvadft & Tester test test tester Salut Man C'est une modification
-test & tester de quoi
-tester & tester de quoi
-testorons & tester de quoi
-gaudriole & subst. f�m. Caract�re os�, licencieux.
-gaudrioler & verbe intrans. (dans l'article GAUDRIOLE, subst. f�m.) S'amuser librement.
+gaudrioler & verbe intrans. (dans  l'article GAUDRIOLE, subst. f�m.) S'amuser librement.
 gaudrioleur & subst. masc. (dans l'article GAUDRIOLE, subst. f�m.) Personne qui aime la gaudriole (supra B).
 gaufrage & subst. masc. Action de gaufrer une �toffe, un cuir, un papier; le r�sultat de cette action; l'ouvrage gaufr�.
 gaufre & subst. f�m. G�teau de miel alv�ol�, confectionn� par les abeilles.
@@ -28,3 +23,7 @@ gaullisme & subst. masc. Ensemble des institutions politiques, des id�es polit
 gaulliste & subst. et adj. Qui se rapporte au g�n�ral de Gaulle, � sa politique, � ses partisans.
 gaulois & adj. et subst. C'est un homme franc, sinc�re (Ac. 1798-1878).
 gallo & subst. masc. (dans l'article GAULOIS, -OISE, adj. et subst.) Dialecte fran�ais parl� dans l'est de la Bretagne. (Dict. xixe et xxe s.).
+tesfdvadft & Tester test test tester Salut Man C'est une modification.
+test & tester de quoi
+tester & tester de quoi
+testorons & tester de quoi

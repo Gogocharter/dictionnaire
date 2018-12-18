@@ -10,7 +10,7 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import utils.Constants;
 
-public class TempMain extends Application {
+public class Main extends Application {
 	
 	Stage window;
 	static LexiNode dictionary;

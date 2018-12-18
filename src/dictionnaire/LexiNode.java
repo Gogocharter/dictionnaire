@@ -20,7 +20,7 @@ public class LexiNode {
 	private LinkedList<LexiNode> children = new LinkedList<LexiNode>();
 
 	/**
-	 * Constructeur d'un LexiNode: Contient deux paramètres pour ajouter la lettre
+	 * Constructeur d'un LexiNode: Contient deux paramï¿½tres pour ajouter la lettre
 	 * et le mot (LexiWord) dans le LexiNode
 	 * 
 	 * @param letter Lettre du LexiNode
@@ -32,7 +32,7 @@ public class LexiNode {
 	}
 
 	/**
-	 * Constructeur d'un LexiNode: Contient un seul paramètre car il n'existe pas de
+	 * Constructeur d'un LexiNode: Contient un seul paramï¿½tre car il n'existe pas de
 	 * mot (LexiWord) a cet instance
 	 * 
 	 * @param letter Lettre du LexiNode
@@ -42,12 +42,19 @@ public class LexiNode {
 	}
 
 	/**
-	 * Contructeur initialisant le Node principale de LexiNode
+	 * Contructeur initialisant le Node principale de LexiNode.
+	 * 
 	 */
 	public LexiNode() {
 		this.letter = ' ';
 	}
 
+	/**
+	 * This method opens a file when given a String path. It then
+	 * loads the words and their definitions into the dictionary.
+	 * 
+	 * @param path the path of the file we are loading
+	 */
 	public void LoadFile(String path) {
 		try {
 			InputStream inputStream = new FileInputStream(path); // "D:\\Workspace\\git\\dictionnaire\\Dictio.txt"
@@ -69,6 +76,12 @@ public class LexiNode {
 		}
 	};
 
+	/**
+	 * This method saves a dictionary to a file when given
+	 * the path to save the file to.
+	 * 
+	 * @param path the path where the file will be saved
+	 */
 	public void saveFile(String path) {
 		
 		LinkedList<LexiWord> words = new LinkedList<LexiWord>();
@@ -87,12 +100,12 @@ public class LexiNode {
 	}
 	
 	/**
-	 * Cette méthode permet de chercher la branche du LexiNode ou le mot (Word) en
-	 * paramètre se trouve
+	 * Cette mï¿½thode permet de chercher la branche du LexiNode ou le mot (Word) en
+	 * paramï¿½tre se trouve
 	 * 
-	 * @param word     Mot à rechercher la branche
-	 * @param position Position de la lettre du mot(word) en paramètre
-	 * @return Retourne la branche où le mot recherché est retrouvé
+	 * @param word     Mot ï¿½ rechercher la branche
+	 * @param position Position de la lettre du mot(word) en paramï¿½tre
+	 * @return Retourne la branche oï¿½ le mot recherchï¿½ est retrouvï¿½
 	 * 
 	 * @requires
 	 */
@@ -121,10 +134,10 @@ public class LexiNode {
 	}
 
 	/**
-	 * Cette méthode permet de retourner les mots possible dans le dictionnaire à
-	 * partir d'un mot reçus en paramètre.
+	 * Cette mï¿½thode permet de retourner les mots possible dans le dictionnaire ï¿½
+	 * partir d'un mot reï¿½us en paramï¿½tre.
 	 * 
-	 * @param word mot à partir pour faire notre recherche
+	 * @param word mot ï¿½ partir pour faire notre recherche
 	 * @return Retourne une liste de LexiWord possible
 	 */
 	public LinkedList<LexiWord> Search(String word) {
@@ -148,9 +161,9 @@ public class LexiNode {
 	}
 
 	/**
-	 * Méthode permettant de chercher un mot dans le dictionnaire
+	 * Mï¿½thode permettant de chercher un mot dans le dictionnaire
 	 * 
-	 * @param word Mot recherhé dans la méthode
+	 * @param word Mot recherhï¿½ dans la mï¿½thode
 	 * @return Retourne l'objet du mot(LexiWord)
 	 */
 	public LexiWord SearchSingleWord(String word) {
@@ -167,11 +180,11 @@ public class LexiNode {
 
 	/**
 	 * Methode permettant de retourner tout les LexiWord possible dans le
-	 * dictionnaire à partir d'une branche dans le node
+	 * dictionnaire ï¿½ partir d'une branche dans le node
 	 * 
-	 * @param branch Branche où la recherche est rendu
-	 * @param list   liste de tout les Lexiword trouvé
-	 * @return Retourne la liste de tout les Lexiword trouvé dans le node
+	 * @param branch Branche oï¿½ la recherche est rendu
+	 * @param list   liste de tout les Lexiword trouvï¿½
+	 * @return Retourne la liste de tout les Lexiword trouvï¿½ dans le node
 	 */
 	public LinkedList<LexiWord> allWords(LexiNode branch, LinkedList<LexiWord> list) {
 
@@ -188,6 +201,8 @@ public class LexiNode {
 	}
 
 	/**
+	 * This method either adds a word if it is not already in the dictionary or
+	 * modifies an existing word's definition.
 	 * 
 	 * @param word
 	 * @param position
@@ -235,8 +250,9 @@ public class LexiNode {
 	}
 
 	/**
+	 * This method updates the LexiWord.
 	 * 
-	 * @param word
+	 * @param word the word to update
 	 */
 	private void updateLexiWord(LexiWord word) {
 
@@ -244,48 +260,54 @@ public class LexiNode {
 	}
 
 	/**
+	 * Get letter.
 	 * 
-	 * @return
+	 * @return letter the letter
 	 */
 	public char getLetter() {
 		return letter;
 	}
 
 	/**
+	 * Set letter
 	 * 
-	 * @param letter
+	 * @param letter the letter to set
 	 */
 	public void setLetter(char letter) {
 		this.letter = letter;
 	}
 
 	/**
+	 * Get LexiWord
 	 * 
-	 * @return
+	 * @return LexiWord the LexiWord
 	 */
 	private LexiWord getLexiWord() {
 		return lexiWord;
 	}
 
 	/**
+	 * Set LexiWord
 	 * 
-	 * @param word
+	 * @param word the LexiWord to set
 	 */
 	private void setLexiWord(LexiWord word) {
 		this.lexiWord = word;
 	}
 
 	/**
+	 * Get LexiNode's children.
 	 * 
-	 * @return
+	 * @return children the children of the LexiNode
 	 */
 	public LinkedList<LexiNode> getChildren() {
 		return children;
 	}
 
 	/**
+	 * Set LexiNode's children.
 	 * 
-	 * @param children
+	 * @param children the children to set
 	 */
 	public void setChildren(LinkedList<LexiNode> children) {
 		this.children = children;
